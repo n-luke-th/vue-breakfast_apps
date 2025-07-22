@@ -6,6 +6,32 @@ The release history is adapting the [Keep a Changelog](https://keepachangelog.co
 
 - none
 
+## Initial Development: [`0.0.1`] - 2025-07-22
+
+### Added
+
+- Tailwind CSS is added to the project.
+
+### Changed
+
+- none
+
+### Deprecated
+
+- none
+
+### Removed
+
+- none
+
+### Fixed
+
+- none
+
+### Others
+
+- none
+
 ## Project setup: [`0.0.0`] - 2025-07-18
 
 ### Added
