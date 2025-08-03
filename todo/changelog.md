@@ -1,8 +1,36 @@
 # Vue-breakfast apps: `TODO` by LukeCreated release history
 
-The release history is adapting the [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) version **1.1.0** format, and will slowly convert the old logs to the new format.
+The release history is adapting the [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) version **1.1.0** format.
 
 ## [Unreleased]
+
+- none
+
+## Initial Development: [`0.0.2`] - 2025-8-03
+
+### Added
+
+- The draft layout of the app.
+- Draft the form component.
+- The data models and enums.
+
+### Changed
+
+- none
+
+### Deprecated
+
+- none
+
+### Removed
+
+- Some default generated style from the CLI.
+
+### Fixed
+
+- none
+
+### Others
 
 - none
 
