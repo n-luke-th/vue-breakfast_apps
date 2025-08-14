@@ -1,0 +1,26 @@
+@reference '../tw.css';
+
+.new-todo-form {
+  @apply flex flex-col items-center justify-center space-y-6 mx-1 my-2 py-2 px-3;
+}
+
+.submit-form-btn {
+  @apply rounded-b-lg px-4 mx-4 bg-amber-500  dark:bg-blue-800 shadow-lg hover:shadow-current dark:hover:not-focus:bg-indigo-700 hover:not-focus:bg-amber-700;
+}
+
+.reset-form-btn {
+  @apply backdrop-blur-xs;
+}
+
+.form-operation-btns-block {
+  @apply px-2 w-full justify-around items-center flex flex-col bg-amber-500;
+}
+
+.desc-block {
+  @apply grid grid-cols-1 rounded-xl py-2 px-3 mx-0.5 my-4 border-2 border-indigo-400 dark:border-indigo-800  dark:focus-within:border-amber-100 focus-within:border-amber-700 focus-within:bg-amber-300 dark:focus-within:bg-indigo-700 shadow-lg dark:focus-within:shadow-lime-900 focus-within:shadow-current;
+}
+
+label,
+button {
+  @apply font-bold font-mono text-lg text-teal-900 dark:text-teal-300;
+}

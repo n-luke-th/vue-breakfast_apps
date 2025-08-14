@@ -1,0 +1,17 @@
+@reference '../tw.css';
+
+.head-banner {
+  @apply w-screen fixed top-0 right-0 left-0 py-3 px-5 text-center font-extrabold italic text-blue-700 bg-amber-100 dark:text-amber-100 dark:bg-amber-950;
+}
+
+.form-wrapper-layout {
+  @apply px-9 mx-1 py-3 my-2 place-content-center row-start-1 row-end-6;
+}
+
+.bottom-left-counter-layout {
+  @apply py-2 my-2 mx-2 px-2 fixed bottom-3 left-0.5 self-center row-start-6 row-span-1 select-none shadow-lg hover:animate-bounce;
+}
+
+.app-version {
+  @apply py-2 my-2 mx-2 px-2 fixed bottom-3 right-0.5 self-center shadow-md shadow-emerald-800 rounded-lg border-1 border-sky-300 hover:animate-pulse;
+}

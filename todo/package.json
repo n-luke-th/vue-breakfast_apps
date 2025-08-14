@@ -1,8 +1,9 @@
 {
   "name": "todo",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "private": true,
   "type": "module",
+  "description": "A simple todo app powered by Vue and developed by LukeCreated.",
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" --",

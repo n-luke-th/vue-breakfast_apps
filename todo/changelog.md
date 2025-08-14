@@ -6,6 +6,37 @@ The release history is adapting the [Keep a Changelog](https://keepachangelog.co
 
 - none
 
+## Initial Development: [`0.1.0`] - 2025-8-14
+
+### Added
+
+- Custom animations.
+- Dedicated `*.css` files for styling each components.
+- Added the app version available globally across the app.
+
+### Changed
+
+- Update styling & layout and effects of the components.
+- The todo counter is now working.
+- Able to add new todo.
+- Able to show todo.
+
+### Deprecated
+
+- none
+
+### Removed
+
+- none.
+
+### Fixed
+
+- none
+
+### Others
+
+- Force auto code formatter to add semi-colon ';'.
+
 ## Initial Development: [`0.0.2`] - 2025-8-03
 
 ### Added
@@ -13,6 +44,7 @@ The release history is adapting the [Keep a Changelog](https://keepachangelog.co
 - The draft layout of the app.
 - Draft the form component.
 - The data models and enums.
+- The current date and time on top of the page.
 
 ### Changed
 
