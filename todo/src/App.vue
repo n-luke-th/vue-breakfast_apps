@@ -58,11 +58,9 @@ function onNewTodoAdded(todo: TodoModel): void {
       :done="todoCounter.done"
       :inProgress="todoCounter.inProgress"
     />
-    <!-- <div class="flex justify-around flex-row md:row-span-1 md:row-start-2">02</div>
-    <div class="flex justify-around flex-row md:row-span-2">03</div> -->
     <div
-      v-for="todo in listOfTodos"
-      class="flex justify-around flex-row md:row-span-1 md:row-start-2 animate-fade-in-scale"
+      v-for="todo in listOfTodos.values()"
+      class="flex justify-around flex-row my-4 animate-fade-in-scale"
     >
       <TodoItem v-bind:todo-item="todo" />
     </div>

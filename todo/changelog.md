@@ -4,6 +4,32 @@ The release history is adapting the [Keep a Changelog](https://keepachangelog.co
 
 ## [Unreleased]
 
+- Fix the noticed issue where all todo items values are pointing to the same values as the form when attempt to fill the new one.
+
+## Initial Development: [`0.1.1`] - 2025-8-15
+
+### Added
+
+- none
+
+### Changed
+
+- Adjusted the form and todo item styling.
+
+### Deprecated
+
+- none
+
+### Removed
+
+- none
+
+### Fixed
+
+- none
+
+### Others
+
 - none
 
 ## Initial Development: [`0.1.0`] - 2025-8-14
@@ -27,7 +53,7 @@ The release history is adapting the [Keep a Changelog](https://keepachangelog.co
 
 ### Removed
 
-- none.
+- none
 
 ### Fixed
 

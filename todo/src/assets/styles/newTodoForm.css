@@ -16,6 +16,14 @@
   @apply px-2 w-full justify-around items-center flex flex-col bg-amber-500;
 }
 
+.name-block {
+  @apply rounded-lg py-2;
+}
+
+.due-block {
+  @apply rounded-lg py-2;
+}
+
 .desc-block {
   @apply grid grid-cols-1 rounded-xl py-2 px-3 mx-0.5 my-4 border-2 border-indigo-400 dark:border-indigo-800  dark:focus-within:border-amber-100 focus-within:border-amber-700 focus-within:bg-amber-300 dark:focus-within:bg-indigo-700 shadow-lg dark:focus-within:shadow-lime-900 focus-within:shadow-current;
 }
