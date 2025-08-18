@@ -9,7 +9,7 @@
       </p>
       <p class="text-red-500 dark:text-green-500">
         {{ done }} task{{ shouldAddS(done) ? 's' : '' }} done out of
-        <i class="text-bold text-red-800 dark:text-amber-400"
+        <i class="font-bold text-red-800 dark:text-amber-400"
           >{{ totalTodo }} task{{ shouldAddS(totalTodo) ? 's' : '' }}</i
         >
       </p>
@@ -18,6 +18,8 @@
 </template>
 
 <script lang="ts" setup>
+import { watch } from 'vue';
+
 const props = defineProps<{
   totalTodo: number;
   done: number;
@@ -27,6 +29,14 @@ const props = defineProps<{
 function shouldAddS(n: number): boolean {
   return n > 1;
 }
+
+watch(props, () => {
+  console.log(`current counter: {
+done: ${props.done},
+inProgresss: ${props.inProgress},
+total: ${props.totalTodo}
+}`);
+});
 </script>
 
 <style></style>

@@ -29,11 +29,11 @@ const todoCounter = reactive<CounterModel>({
 });
 
 function onNewTodoAdded(todo: TodoModel): void {
-  todoCounter.totalTodo = listOfTodos.value.push(todo); // add new item to list, this returns new length
+  todoCounter.totalTodo = listOfTodos.value.push(todo); // add new item to list, this returns new length.
 
   if (todo.status == TodoStatus.done) {
     todoCounter.done += 1;
-  } else if (todo.status == TodoStatus.inProgress) {
+  } else if (todo.status == TodoStatus.inProgress || todo.status == undefined) {
     todoCounter.inProgress += 1;
   }
 }
@@ -58,11 +58,17 @@ function onNewTodoAdded(todo: TodoModel): void {
       :done="todoCounter.done"
       :inProgress="todoCounter.inProgress"
     />
-    <div
-      v-for="todo in listOfTodos.values()"
-      class="flex justify-around flex-row my-4 animate-fade-in-scale"
-    >
-      <TodoItem v-bind:todo-item="todo" />
+    <div class="flex flex-col items-center justify-center space-x-2 row-start-1 row-end-6">
+      <div
+        class="my-4 mx-2 items-center overflow-y-scroll snap-both scroll-smoooth snap-normal snap-center animate-fade-in-scale"
+      >
+        <div
+          v-for="todo in listOfTodos"
+          class="flex justify-around flex-row py-4 scroll-m-2 scroll-p-2 scroll-ms-2 snap-start"
+        >
+          <TodoItem v-bind:todo-item="todo" class="bg-transparent" />
+        </div>
+      </div>
     </div>
   </main>
   <footer class="app-version"><span class="select-none">version: </span>{{ appVersion }}</footer>

@@ -4,7 +4,34 @@ The release history is adapting the [Keep a Changelog](https://keepachangelog.co
 
 ## [Unreleased]
 
-- Fix the noticed issue where all todo items values are pointing to the same values as the form when attempt to fill the new one.
+- none
+
+## Initial Development: [`0.1.2`] - 2025-8-18
+
+### Added
+
+- Added the 2 way data binding for description for todo item.
+- Make sure the new todo item is reset to default value after emitted the recent one.
+
+### Changed
+
+- Adjusted the scrollable layout of items in draft.
+
+### Deprecated
+
+- none
+
+### Removed
+
+- none
+
+### Fixed
+
+- Fixed the todo item being passed and emitted by reference.
+
+### Others
+
+- none
 
 ## Initial Development: [`0.1.1`] - 2025-8-15
 

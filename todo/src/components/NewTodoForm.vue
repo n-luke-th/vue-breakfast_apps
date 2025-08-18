@@ -39,6 +39,7 @@
           rows="8"
           placeholder="enter your todo descriptions here..."
           class="resize-none focus:outline-none dark:text-amber-400"
+          v-model.trim="newTodoItem.desc"
         ></textarea>
       </div>
       <div class="form-operation-btns-block">
@@ -70,17 +71,25 @@ const newTodoItem = reactive<TodoModel>({
 });
 
 function toMapStr(obj: TodoModel): string {
-  return `{name: ${obj.name}, due: ${obj.due}, status: ${obj.status?.toString()}}`;
+  return `{
+  name: ${obj.name},
+  due: ${obj.due},
+  status: ${obj.status?.toString()}
+  }`;
 }
 
 function onSubmit() {
   console.info(`todo: ${toMapStr(newTodoItem)}`);
-  emits('submitNewTodo', newTodoItem);
+  emits('submitNewTodo', { ...newTodoItem }); // Shallow Copy (Object Spread) to prevent passing object reference before emit.
   resetItems();
 }
 
 function resetItems() {
   formInput.value?.reset();
+  newTodoItem.desc = undefined;
+  newTodoItem.due = undefined;
+  newTodoItem.name = undefined;
+  newTodoItem.status = TodoStatus.inProgress;
 }
 </script>
 
