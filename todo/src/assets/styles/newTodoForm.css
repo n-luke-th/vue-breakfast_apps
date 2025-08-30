@@ -1,19 +1,19 @@
 @reference '../tw.css';
 
 .new-todo-form {
-  @apply flex flex-col items-center justify-center space-y-6 mx-1 my-2 py-2 px-3;
+  @apply flex flex-col items-center justify-around space-y-6 mx-1 my-2 py-2 px-3 w-fit;
 }
 
 .submit-form-btn {
-  @apply rounded-b-lg px-4 mx-4 bg-amber-500  dark:bg-blue-800 shadow-lg hover:shadow-current dark:hover:not-focus:bg-indigo-700 hover:not-focus:bg-amber-700;
+  @apply rounded-b-lg px-4 mx-4 bg-amber-700 dark:bg-amber-500 shadow-md hover:shadow-current;
 }
 
 .reset-form-btn {
-  @apply backdrop-blur-xs;
+  @apply rounded-t-lg px-4 mx-4 shadow-md hover:shadow-current dark:bg-sky-800 bg-teal-300;
 }
 
 .form-operation-btns-block {
-  @apply px-2 w-full justify-around items-center flex flex-col bg-amber-500;
+  @apply px-2 w-full items-stretch flex flex-col space-y-0.5;
 }
 
 .name-block {
@@ -31,4 +31,20 @@
 label,
 button {
   @apply font-bold font-mono text-lg text-teal-900 dark:text-teal-300;
+}
+
+.custom-date-picker {
+  @apply dark:text-amber-400 shadow-md focus:outline-none block w-full rounded-md px-1 py-2;
+  position: relative;
+}
+
+.custom-date-picker::-webkit-calendar-picker-indicator {
+  opacity: 1;
+  display: block;
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  width: 20px;
+  height: 100%;
+  cursor: pointer;
 }

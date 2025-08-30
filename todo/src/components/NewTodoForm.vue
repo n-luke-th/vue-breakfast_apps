@@ -3,7 +3,7 @@
     <h1 class="font-black text-3xl drop-shadow-xs drop-shadow-blue-300">
       {{ headingStr == undefined ? 'New' : headingStr }}
     </h1>
-    <form @submit.prevent="onSubmit" id="new" ref="new-todo">
+    <form @submit.prevent="onSubmit" @reset="resetItems" id="new" ref="new-todo">
       <div class="name-block">
         <label for="new-todo-name">New TODO name: </label>
         <input
@@ -23,10 +23,11 @@
         <label for="new-todo-due">Due date: </label>
         <input
           type="datetime-local"
-          class="dark:text-amber-400 shadow-md focus:outline-none"
+          class="custom-date-picker"
           v-model="newTodoItem.due"
           form="new"
           id="new-todo-due"
+          placeholder="Enter due date here"
           required
         />
       </div>
@@ -35,15 +36,15 @@
         <textarea
           form="new"
           id="new-todo-desc"
-          cols="20"
-          rows="8"
+          cols="30"
+          rows="7"
           placeholder="enter your todo descriptions here..."
           class="resize-none focus:outline-none dark:text-amber-400"
           v-model.trim="newTodoItem.desc"
         ></textarea>
       </div>
       <div class="form-operation-btns-block">
-        <button type="reset" value="clear" class="reset-form-btn" form="new">clear</button> &nbsp;
+        <button type="reset" value="clear" class="reset-form-btn" form="new">clear</button>
         <button type="submit" class="submit-form-btn">submit</button>
       </div>
     </form>

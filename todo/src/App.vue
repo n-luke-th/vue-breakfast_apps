@@ -45,7 +45,7 @@ function onNewTodoAdded(todo: TodoModel): void {
   </header>
 
   <main
-    class="flex justify-evenly space-x-1 flex-col pt-20 px-5 mx-2 md:grid md:grid-rows-6 md:grid-cols-2 md:gap-4 sm:h-screen md:grid-flow-row"
+    class="flex flex-col justify-center-safe items-center pt-20 md:flex-row md:gap-18 pb-28 mb-12"
   >
     <NewTodoForm
       headingStr="New TODO item"
@@ -58,15 +58,16 @@ function onNewTodoAdded(todo: TodoModel): void {
       :done="todoCounter.done"
       :inProgress="todoCounter.inProgress"
     />
-    <div class="flex flex-col items-center justify-center space-x-2 row-start-1 row-end-6">
-      <div
-        class="my-4 mx-2 items-center overflow-y-scroll snap-both scroll-smoooth snap-normal snap-center animate-fade-in-scale"
-      >
+    <div
+      v-if="listOfTodos.length > 0"
+      class="relative flex w-65 md:h-150 overflow-x-auto md:overflow-x-hidden overflow-y-hidden md:overflow-y-auto scroll-smooth snap-x md:snap-y snap-mandatory rounded-2xl shadow-md bg-gradient-to-br from-lime-400 to-lime-500 dark:from-lime-700 dark:to-lime-800 p-4 mb-12"
+    >
+      <div class="flex flex-row md:flex-col gap-4">
         <div
           v-for="todo in listOfTodos"
-          class="flex justify-around flex-row py-4 scroll-m-2 scroll-p-2 scroll-ms-2 snap-start"
+          class="flex-shrink-0 md:flex-shrink snap-start p-5 rounded-xl shadow-sm bg-white/70 dark:bg-black/30 backdrop-blur-md hover:scale-105 transition-transform duration-300"
         >
-          <TodoItem v-bind:todo-item="todo" class="bg-transparent" />
+          <TodoItem v-bind:todo-item="todo" class="bg-transparent animate-fade-in-scale" />
         </div>
       </div>
     </div>
@@ -76,4 +77,18 @@ function onNewTodoAdded(todo: TodoModel): void {
 
 <style scoped>
 @import './assets/styles/root.css';
+/* For WebKit-based browsers */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* For Firefox */
+html {
+  scrollbar-width: none;
+}
+
+/* For legacy Edge/IE */
+body {
+  -ms-overflow-style: none;
+}
 </style>

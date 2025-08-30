@@ -5,13 +5,13 @@
 }
 
 .form-wrapper-layout {
-  @apply px-9 mx-1 py-3 my-2 place-content-center row-start-1 row-end-6;
+  @apply px-8 mx-2 py-3 my-2 place-content-center;
 }
 
 .bottom-left-counter-layout {
-  @apply py-2 my-2 mx-2 px-2 fixed bottom-3 left-0.5 self-center row-start-6 row-span-1 select-none shadow-lg hover:animate-bounce;
+  @apply py-2 my-2 mx-2 px-2 fixed bottom-3 left-0.5 self-center select-none shadow-lg hover:animate-bounce;
 }
 
 .app-version {
-  @apply py-2 my-2 mx-2 px-2 fixed bottom-3 right-0.5 self-center shadow-md shadow-emerald-800 rounded-lg border-1 border-sky-300 hover:animate-pulse;
+  @apply py-2 my-2 mx-2 px-2 fixed bottom-3 right-0.5 self-center shadow-md shadow-emerald-800 rounded-lg border-1 border-sky-300 bg-sky-100 dark:bg-sky-950 hover:animate-pulse;
 }

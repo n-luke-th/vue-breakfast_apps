@@ -4,7 +4,7 @@
   >
     <p v-if="totalTodo < 1">No Todo items yet.</p>
     <div v-else class="rounded-2xl">
-      <p class="text-violet-600">
+      <p class="text-violet-600 dark:text-sky-100">
         {{ inProgress }} task{{ shouldAddS(inProgress) ? 's are' : ' is' }} in progress
       </p>
       <p class="text-red-500 dark:text-green-500">

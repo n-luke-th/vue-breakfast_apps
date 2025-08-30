@@ -6,6 +6,33 @@ The release history is adapting the [Keep a Changelog](https://keepachangelog.co
 
 - none
 
+## Initial Development: [`0.1.3`] - 2025-8-30
+
+### Added
+
+- none
+
+### Changed
+
+- Adjusted the scrollable layout and style of todo items.
+- Overall styling adjusted.
+
+### Deprecated
+
+- none
+
+### Removed
+
+- none
+
+### Fixed
+
+- Make sure when reset the form, all actual value of the form are reset as well.
+
+### Others
+
+- none
+
 ## Initial Development: [`0.1.2`] - 2025-8-18
 
 ### Added
