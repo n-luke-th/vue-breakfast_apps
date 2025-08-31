@@ -45,7 +45,7 @@ function onNewTodoAdded(todo: TodoModel): void {
   </header>
 
   <main
-    class="flex flex-col justify-center-safe items-center pt-20 md:flex-row md:gap-18 pb-28 mb-12"
+    class="flex flex-col justify-center-safe items-center pt-10 md:pt-20 md:px-5 md:flex-row md:gap-1 mb-12"
   >
     <NewTodoForm
       headingStr="New TODO item"
@@ -60,14 +60,17 @@ function onNewTodoAdded(todo: TodoModel): void {
     />
     <div
       v-if="listOfTodos.length > 0"
-      class="relative flex w-65 md:h-150 overflow-x-auto md:overflow-x-hidden overflow-y-hidden md:overflow-y-auto scroll-smooth snap-x md:snap-y snap-mandatory rounded-2xl shadow-md bg-gradient-to-br from-lime-400 to-lime-500 dark:from-lime-700 dark:to-lime-800 p-4 mb-12"
+      class="relative flex justify-center md:max-h-150 w-70 max-w-full overflow-x-auto md:overflow-x-hidden overflow-y-hidden md:overflow-y-auto scroll-smooth snap-x md:snap-y snap-mandatory rounded-2xl shadow-md bg-gradient-to-br from-lime-400 to-lime-500 dark:from-lime-700 dark:to-lime-800 p-3 mb-12"
     >
-      <div class="flex flex-row md:flex-col gap-4">
+      <div class="flex flex-row md:flex-col gap-3 w-max md:w-full">
         <div
           v-for="todo in listOfTodos"
-          class="flex-shrink-0 md:flex-shrink snap-start p-5 rounded-xl shadow-sm bg-white/70 dark:bg-black/30 backdrop-blur-md hover:scale-105 transition-transform duration-300"
+          class="flex-shrink-0 md:flex-shrink snap-start p-4 rounded-xl shadow-sm bg-white/70 dark:bg-black/30 backdrop-blur-md hover:scale-105 transition-transform duration-300 border-2 border-b-cyan-700 py-2 px-2"
         >
-          <TodoItem v-bind:todo-item="todo" class="bg-transparent animate-fade-in-scale" />
+          <TodoItem
+            v-bind:todo-item="todo"
+            class="bg-transparent animate-fade-in-scale cursor-pointer"
+          />
         </div>
       </div>
     </div>

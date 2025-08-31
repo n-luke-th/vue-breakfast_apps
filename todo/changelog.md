@@ -4,6 +4,32 @@ The release history is adapting the [Keep a Changelog](https://keepachangelog.co
 
 ## [Unreleased]
 
+- Fix the unlimited scrollable area.
+
+## Initial Development: [`0.1.4`] - 2025-8-31
+
+### Added
+
+- Added the delete todo item button with styling and effects.
+
+### Changed
+
+- Adjusted the styling.
+
+### Deprecated
+
+- none
+
+### Removed
+
+- none
+
+### Fixed
+
+- none
+
+### Others
+
 - none
 
 ## Initial Development: [`0.1.3`] - 2025-8-30
