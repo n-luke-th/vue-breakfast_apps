@@ -45,19 +45,14 @@ function onNewTodoAdded(todo: TodoModel): void {
   </header>
 
   <main
-    class="flex flex-col justify-center-safe items-center pt-10 md:pt-20 md:px-5 md:flex-row md:gap-1 mb-12"
+    class="flex flex-col justify-center-safe items-center pt-15 md:px-5 md:flex-row md:gap-1 mb-12"
   >
     <NewTodoForm
       headingStr="New TODO item"
       class="form-wrapper-layout"
       @submit-new-todo="(todo: TodoModel) => onNewTodoAdded(todo)"
     />
-    <TodoCounter
-      class="bottom-left-counter-layout"
-      :totalTodo="todoCounter.totalTodo"
-      :done="todoCounter.done"
-      :inProgress="todoCounter.inProgress"
-    />
+
     <div
       v-if="listOfTodos.length > 0"
       class="relative flex justify-center md:max-h-150 w-70 max-w-full overflow-x-auto md:overflow-x-hidden overflow-y-hidden md:overflow-y-auto scroll-smooth snap-x md:snap-y snap-mandatory rounded-2xl shadow-md bg-gradient-to-br from-lime-400 to-lime-500 dark:from-lime-700 dark:to-lime-800 p-3 mb-12"
@@ -75,23 +70,31 @@ function onNewTodoAdded(todo: TodoModel): void {
       </div>
     </div>
   </main>
-  <footer class="app-version"><span class="select-none">version: </span>{{ appVersion }}</footer>
+  <div class="flex flex-row justify-between items-end pb-2 pt-5 md:pt-12">
+    <TodoCounter
+      class="bottom-left-counter-layout"
+      :totalTodo="todoCounter.totalTodo"
+      :done="todoCounter.done"
+      :inProgress="todoCounter.inProgress"
+    />
+    <footer class="app-version"><span class="select-none">version: </span>{{ appVersion }}</footer>
+  </div>
 </template>
 
 <style scoped>
 @import './assets/styles/root.css';
 /* For WebKit-based browsers */
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   display: none;
-}
+} */
 
 /* For Firefox */
-html {
+/* html {
   scrollbar-width: none;
-}
+} */
 
 /* For legacy Edge/IE */
-body {
+/* body {
   -ms-overflow-style: none;
-}
+} */
 </style>

@@ -4,7 +4,34 @@ The release history is adapting the [Keep a Changelog](https://keepachangelog.co
 
 ## [Unreleased]
 
-- Fix the unlimited scrollable area.
+- Make all the actions on the todo item function (delete and open the details panel with further actions).
+
+## Initial Development: [`0.1.5`] - 2025-9-4
+
+### Added
+
+- none
+
+### Changed
+
+- Adjusted the styling.
+
+### Deprecated
+
+- none
+
+### Removed
+
+- none
+
+### Fixed
+
+- Fixed the unlimited scrollable area.
+- Fixed the todo counter and version indicator overlaping with the todo list on the smaller screen.
+
+### Others
+
+- none
 
 ## Initial Development: [`0.1.4`] - 2025-8-31
 
