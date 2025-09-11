@@ -1,13 +1,17 @@
 <template>
   <div class="flex flex-row items-start">
     <div class="flex flex-col">
-      {{ todoItem?.name }}
+      {{ todoItem?.todoId }}: {{ todoItem?.name }}
       <br />
-      {{ getStatusStr(todoItem?.status) }}
+      {{ todoStatusAsStr(todoItem?.status) }}
       <br />
       due on {{ todoItem?.due }}
     </div>
-    <button id="deleteBtn" class="hover:scale-150 transition-transform duration-200 cursor-grab">
+    <button
+      id="deleteBtn"
+      class="hover:scale-150 transition-transform duration-200 cursor-grab"
+      @click.left="() => onDelete(todoItem!.todoId)"
+    >
       <svg
         id="deleteSvg"
         xmlns="http://www.w3.org/2000/svg"
@@ -33,18 +37,23 @@
 </template>
 
 <script lang="ts" setup>
-import { TodoStatus, type TodoModel } from '@/models/todoModels';
+import { todoStatusAsStr, type TodoModel } from '@/models/todoModels';
 import { defineProps } from 'vue';
+
 const props = defineProps<{
   todoItem: TodoModel | undefined;
 }>();
 
-function getStatusStr(todo?: TodoStatus): string {
-  if (todo === TodoStatus.done) {
-    return 'done';
-  } else {
-    return 'in progress';
-  }
+// const emits = defineEmits<{
+//   deleteTodo: [number];
+// }>();
+const emits = defineEmits<{
+  (e: 'deleteTodo', id: number): void;
+}>();
+
+function onDelete(id: number) {
+  console.log(`del at id '${id}'`);
+  emits('deleteTodo', id);
 }
 </script>
 

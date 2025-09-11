@@ -52,8 +52,8 @@
 </template>
 
 <script lang="ts" setup>
-import { TodoStatus, type TodoModel } from '@/models/todoModels';
-import { reactive, ref, useTemplateRef } from 'vue';
+import { todoAsMapStr, TodoStatus, type TodoModel } from '@/models/todoModels';
+import { inject, reactive, ref, useTemplateRef, type Ref } from 'vue';
 
 const emits = defineEmits<{
   submitNewTodo: [TodoModel];
@@ -64,23 +64,28 @@ const props = defineProps<{
 
 const formInput = useTemplateRef('new-todo');
 
+const todoId = inject<Ref<number, number>>('todoId');
 const newTodoItem = reactive<TodoModel>({
   name: undefined,
   due: undefined,
   desc: undefined,
   status: TodoStatus.inProgress,
+  todoId: -1,
 });
 
-function toMapStr(obj: TodoModel): string {
-  return `{
-  name: ${obj.name},
-  due: ${obj.due},
-  status: ${obj.status?.toString()}
-  }`;
+function getNextTodoId(): number {
+  if (todoId != undefined) {
+    todoId.value += 1;
+    return todoId.value;
+  } else {
+    return -1;
+  }
 }
 
 function onSubmit() {
-  console.info(`todo: ${toMapStr(newTodoItem)}`);
+  newTodoItem.todoId = getNextTodoId();
+
+  console.info(`todo: ${todoAsMapStr(newTodoItem)}`);
   emits('submitNewTodo', { ...newTodoItem }); // Shallow Copy (Object Spread) to prevent passing object reference before emit.
   resetItems();
 }
@@ -91,6 +96,7 @@ function resetItems() {
   newTodoItem.due = undefined;
   newTodoItem.name = undefined;
   newTodoItem.status = TodoStatus.inProgress;
+  newTodoItem.todoId = -1;
 }
 </script>
 

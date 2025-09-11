@@ -13,5 +13,5 @@
 }
 
 .app-version {
-  @apply py-2 my-2 mx-2 px-2 relative justify-self-end-safe w-fit h-fit shadow-md shadow-emerald-800 rounded-lg border-1 border-sky-300 bg-sky-100 dark:bg-sky-950 hover:animate-pulse;
+  @apply py-2 my-2 mx-2 px-2 relative justify-self-end-safe w-fit h-fit shadow-md shadow-emerald-800 rounded-lg border-1 border-sky-300 bg-sky-100 dark:bg-sky-950 hover:animate-pulse select-all;
 }

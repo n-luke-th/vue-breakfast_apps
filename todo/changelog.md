@@ -6,6 +6,32 @@ The release history is adapting the [Keep a Changelog](https://keepachangelog.co
 
 - Make all the actions on the todo item function (delete and open the details panel with further actions).
 
+## Initial Development: [`0.1.6`] - 2025-9-11
+
+### Added
+
+- Ability to delete single todo item at a time.
+
+### Changed
+
+- Adjusted the styling.
+
+### Deprecated
+
+- none
+
+### Removed
+
+- none
+
+### Fixed
+
+- none
+
+### Others
+
+- none
+
 ## Initial Development: [`0.1.5`] - 2025-9-4
 
 ### Added

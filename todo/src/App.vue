@@ -1,11 +1,14 @@
 <script setup lang="ts">
-import { ref, onMounted, reactive } from 'vue';
+import { ref, onMounted, reactive, watch, provide, getCurrentInstance } from 'vue';
 import NewTodoForm from './components/NewTodoForm.vue';
 import TodoCounter from './components/TodoCounter.vue';
-import { TodoStatus, type TodoCounter as CounterModel, type TodoModel } from './models/todoModels';
+import {
+  todoAsMapStr,
+  TodoStatus,
+  type TodoCounter as CounterModel,
+  type TodoModel,
+} from './models/todoModels';
 import TodoItem from './components/TodoItem.vue';
-
-import { getCurrentInstance } from 'vue';
 
 const appVersion: string = getCurrentInstance()?.appContext.config.globalProperties.versionNumber;
 
@@ -20,6 +23,8 @@ onMounted(() => {
   setInterval(updateTime, 1000);
 });
 
+const IdTracker = ref<number>(-1);
+
 const listOfTodos = ref<[TodoModel?]>([]);
 
 const todoCounter = reactive<CounterModel>({
@@ -27,6 +32,8 @@ const todoCounter = reactive<CounterModel>({
   done: 0,
   inProgress: 0,
 });
+
+provide('todoId', IdTracker);
 
 function onNewTodoAdded(todo: TodoModel): void {
   todoCounter.totalTodo = listOfTodos.value.push(todo); // add new item to list, this returns new length.
@@ -37,6 +44,27 @@ function onNewTodoAdded(todo: TodoModel): void {
     todoCounter.inProgress += 1;
   }
 }
+
+function delAtId(id: number) {
+  const index = listOfTodos.value.findIndex((item) => {
+    item?.todoId == id;
+  });
+  const isDone = listOfTodos.value[index]?.status == TodoStatus.done;
+  const deleted = listOfTodos.value.splice(index - 1, 1);
+  console.log(`deleted: ${todoAsMapStr(deleted[0]!)}`);
+  if (deleted.length == 1) {
+    todoCounter.totalTodo -= 1;
+  }
+  if (isDone && todoCounter.done > 0) {
+    todoCounter.done -= 1;
+  } else if (!isDone && todoCounter.inProgress > 0) {
+    todoCounter.inProgress -= 1;
+  }
+}
+
+watch(todoCounter, () => {
+  console.assert(todoCounter.totalTodo == todoCounter.done + todoCounter.inProgress);
+});
 </script>
 
 <template>
@@ -64,7 +92,10 @@ function onNewTodoAdded(todo: TodoModel): void {
         >
           <TodoItem
             v-bind:todo-item="todo"
+            v-if="todo"
+            :key="todo.todoId"
             class="bg-transparent animate-fade-in-scale cursor-pointer"
+            @delete-todo="(id: number) => delAtId(id)"
           />
         </div>
       </div>
