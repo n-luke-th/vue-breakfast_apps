@@ -1,6 +1,6 @@
 {
   "name": "todo",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "private": true,
   "type": "module",
   "description": "A simple todo app powered by Vue and developed by LukeCreated.",

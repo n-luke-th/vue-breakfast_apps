@@ -9,6 +9,7 @@ import {
   type TodoModel,
 } from './models/todoModels';
 import TodoItem from './components/TodoItem.vue';
+import TodoPopPanel from './components/TodoPopPanel.vue';
 
 const appVersion: string = getCurrentInstance()?.appContext.config.globalProperties.versionNumber;
 
@@ -33,6 +34,8 @@ const todoCounter = reactive<CounterModel>({
   inProgress: 0,
 });
 
+const currentSelectedTodoId = ref<number>(-1);
+
 provide('todoId', IdTracker);
 
 function onNewTodoAdded(todo: TodoModel): void {
@@ -51,8 +54,8 @@ function delAtId(id: number) {
   });
   const isDone = listOfTodos.value[index]?.status == TodoStatus.done;
   const deleted = listOfTodos.value.splice(index - 1, 1);
-  console.log(`deleted: ${todoAsMapStr(deleted[0]!)}`);
   if (deleted.length == 1) {
+    console.log(`deleted: ${todoAsMapStr(deleted[0]!)}`);
     todoCounter.totalTodo -= 1;
   }
   if (isDone && todoCounter.done > 0) {
@@ -60,6 +63,11 @@ function delAtId(id: number) {
   } else if (!isDone && todoCounter.inProgress > 0) {
     todoCounter.inProgress -= 1;
   }
+}
+
+function syncTodoForPanelAndShowIt(todoId: number) {
+  currentSelectedTodoId.value = todoId;
+  console.log(`selected ${todoId}`);
 }
 
 watch(todoCounter, () => {
@@ -71,6 +79,13 @@ watch(todoCounter, () => {
   <header class="head-banner">
     <p>{{ currentTime }}</p>
   </header>
+  <TodoPopPanel
+    v-show="currentSelectedTodoId > -1 ? true : false"
+    @btn1-click="currentSelectedTodoId = -1"
+    class="popup-panel"
+    :panel-title="listOfTodos.filter((td) => td?.todoId == currentSelectedTodoId)[0]?.name"
+    :panel-desc="listOfTodos.filter((td) => td?.todoId == currentSelectedTodoId)[0]?.desc"
+  />
 
   <main
     class="flex flex-col justify-center-safe items-center pt-15 md:px-5 md:flex-row md:gap-1 mb-12"
@@ -94,8 +109,13 @@ watch(todoCounter, () => {
             v-bind:todo-item="todo"
             v-if="todo"
             :key="todo.todoId"
-            class="bg-transparent animate-fade-in-scale cursor-pointer"
+            class="bg-transparent transition-transform duration-500 cursor-pointer"
+            :class="{
+              'animate-fade-in-scale': listOfTodos.includes(todo),
+              'animate-fade-out-scale': !listOfTodos.includes(todo),
+            }"
             @delete-todo="(id: number) => delAtId(id)"
+            @click="syncTodoForPanelAndShowIt(todo.todoId)"
           />
         </div>
       </div>

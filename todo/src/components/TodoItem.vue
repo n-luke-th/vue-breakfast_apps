@@ -8,9 +8,10 @@
       due on {{ todoItem?.due }}
     </div>
     <button
+      type="button"
       id="deleteBtn"
       class="hover:scale-150 transition-transform duration-200 cursor-grab"
-      @click.left="() => onDelete(todoItem!.todoId)"
+      @click.stop="() => onDelete(todoItem!.todoId)"
     >
       <svg
         id="deleteSvg"
