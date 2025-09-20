@@ -79,13 +79,14 @@ watch(todoCounter, () => {
   <header class="head-banner">
     <p>{{ currentTime }}</p>
   </header>
-  <TodoPopPanel
-    v-show="currentSelectedTodoId > -1 ? true : false"
-    @btn1-click="currentSelectedTodoId = -1"
-    class="popup-panel"
-    :panel-title="listOfTodos.filter((td) => td?.todoId == currentSelectedTodoId)[0]?.name"
-    :panel-desc="listOfTodos.filter((td) => td?.todoId == currentSelectedTodoId)[0]?.desc"
-  />
+  <Transition name="popup-panel-animation">
+    <TodoPopPanel
+      v-show="currentSelectedTodoId > -1 ? true : false"
+      @btn1-click="currentSelectedTodoId = -1"
+      class="popup-panel"
+      :panel-title="listOfTodos.filter((td) => td?.todoId == currentSelectedTodoId)[0]?.name"
+      :panel-desc="listOfTodos.filter((td) => td?.todoId == currentSelectedTodoId)[0]?.desc"
+  /></Transition>
 
   <main
     class="flex flex-col justify-center-safe items-center pt-15 md:px-5 md:flex-row md:gap-1 mb-12"
@@ -95,31 +96,29 @@ watch(todoCounter, () => {
       class="form-wrapper-layout"
       @submit-new-todo="(todo: TodoModel) => onNewTodoAdded(todo)"
     />
-
-    <div
-      v-if="listOfTodos.length > 0"
-      class="relative flex justify-center md:max-h-150 w-70 max-w-full overflow-x-auto md:overflow-x-hidden overflow-y-hidden md:overflow-y-auto scroll-smooth snap-x md:snap-y snap-mandatory rounded-2xl shadow-md bg-gradient-to-br from-lime-400 to-lime-500 dark:from-lime-700 dark:to-lime-800 p-3 mb-12"
-    >
-      <div class="flex flex-row md:flex-col gap-3 w-max md:w-full">
-        <div
-          v-for="todo in listOfTodos"
-          class="flex-shrink-0 md:flex-shrink snap-start p-4 rounded-xl shadow-sm bg-white/70 dark:bg-black/30 backdrop-blur-md hover:scale-105 transition-transform duration-300 border-2 border-b-cyan-700 py-2 px-2"
-        >
-          <TodoItem
-            v-bind:todo-item="todo"
-            v-if="todo"
-            :key="todo.todoId"
-            class="bg-transparent transition-transform duration-500 cursor-pointer"
-            :class="{
-              'animate-fade-in-scale': listOfTodos.includes(todo),
-              'animate-fade-out-scale': !listOfTodos.includes(todo),
-            }"
-            @delete-todo="(id: number) => delAtId(id)"
-            @click="syncTodoForPanelAndShowIt(todo.todoId)"
-          />
-        </div>
-      </div>
-    </div>
+    <Transition name="listing-board-animation">
+      <div
+        v-if="listOfTodos.length > 0"
+        class="relative flex justify-center md:max-h-150 w-70 max-w-full overflow-x-auto md:overflow-x-hidden overflow-y-hidden md:overflow-y-auto scroll-smooth snap-x md:snap-y snap-mandatory rounded-2xl shadow-md bg-gradient-to-br from-lime-400 to-lime-500 dark:from-lime-700 dark:to-lime-800 p-3 mb-12"
+      >
+        <div class="flex flex-row md:flex-col gap-3.5 w-max md:w-full">
+          <TransitionGroup name="todo-items-animation" tag="div">
+            <div
+              v-for="todo in listOfTodos"
+              :key="todo?.todoId"
+              class="flex-shrink-0 md:flex-shrink snap-start p-4 rounded-xl shadow-sm bg-white/70 dark:bg-black/30 backdrop-blur-md hover:scale-105 transition-transform duration-300 border-2 border-b-cyan-700 py-2 px-2"
+            >
+              <TodoItem
+                v-bind:todo-item="todo"
+                v-if="todo"
+                :key="todo.todoId"
+                class="bg-transparent cursor-pointer"
+                @delete-todo="(id: number) => delAtId(id)"
+                @click="syncTodoForPanelAndShowIt(todo.todoId)"
+              /></div
+          ></TransitionGroup>
+        </div></div
+    ></Transition>
   </main>
   <div class="flex flex-row justify-between items-end pb-2 pt-5 md:pt-12">
     <TodoCounter

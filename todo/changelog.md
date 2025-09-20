@@ -5,7 +5,32 @@ The release history is adapting the [Keep a Changelog](https://keepachangelog.co
 ## [Unreleased]
 
 - Make all the actions on the todo item function (delete and open the details panel with further actions).
-- May use `TransitionGroup` to provide in and out animations.
+
+## Initial Development: [`0.1.8`] - 2025-9-20
+
+### Added
+
+- Animations and transitions for open/close popup panel, adding/removing todo items as well as the listing todo items board itself.
+
+### Changed
+
+- none
+
+### Deprecated
+
+- none
+
+### Removed
+
+- none
+
+### Fixed
+
+- none
+
+### Others
+
+- none
 
 ## Initial Development: [`0.1.7`] - 2025-9-19
 

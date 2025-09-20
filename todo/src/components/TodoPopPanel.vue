@@ -1,10 +1,7 @@
 <template>
-  <div
-    id="todo-item-details-panel"
-    class="mx-2 my-2 rounded-2xl bg-amber-200 dark:bg-amber-900 animate-fade-in-scales"
-  >
+  <div id="todo-item-details-panel" class="mx-2 my-2 rounded-2xl bg-amber-200 dark:bg-amber-900">
     <h1 class="font-black flex flex-row justify-self-center text-3xl">
-      {{ panelTitle ?? 'Attention' }}
+      {{ panelTitle ?? 'Closing' }}
     </h1>
     <p class="mt-3 mx-5">{{ panelDesc ?? '' }}</p>
     <div
