@@ -49,20 +49,25 @@ function onNewTodoAdded(todo: TodoModel): void {
 }
 
 function delAtId(id: number) {
-  const index = listOfTodos.value.findIndex((item) => {
-    item?.todoId == id;
-  });
-  const isDone = listOfTodos.value[index]?.status == TodoStatus.done;
-  const deleted = listOfTodos.value.splice(index - 1, 1);
-  if (deleted.length == 1) {
-    console.log(`deleted: ${todoAsMapStr(deleted[0]!)}`);
-    todoCounter.totalTodo -= 1;
-  }
-  if (isDone && todoCounter.done > 0) {
-    todoCounter.done -= 1;
-  } else if (!isDone && todoCounter.inProgress > 0) {
-    todoCounter.inProgress -= 1;
-  }
+  // const index = listOfTodos.value.findIndex((item) => {
+  //   item?.todoId == id;
+  // });
+  // console.log(index);
+  // if (index > -1) {
+  //   const isDone = listOfTodos.value[index]?.status == TodoStatus.done;
+  //   const deleted = listOfTodos.value.splice(index - 1, 1);
+  //   if (deleted.length == 1) {
+  //     console.log(`deleted: ${todoAsMapStr(deleted[0]!)}`);
+  //     todoCounter.totalTodo -= 1;
+  //   }
+  //   if (isDone && todoCounter.done > 0) {
+  //     todoCounter.done -= 1;
+  //   } else if (!isDone && todoCounter.inProgress > 0) {
+  //     todoCounter.inProgress -= 1;
+  //   }
+  // }
+  // const newList = listOfTodos.value.filter((td) => td?.todoId != id);
+  // listOfTodos.value = newList ?? [];
 }
 
 function syncTodoForPanelAndShowIt(todoId: number) {
@@ -85,6 +90,9 @@ watch(todoCounter, () => {
       @btn1-click="currentSelectedTodoId = -1"
       class="popup-panel"
       :panel-title="listOfTodos.filter((td) => td?.todoId == currentSelectedTodoId)[0]?.name"
+      :panel-sub-title="
+        listOfTodos.filter((td) => td?.todoId == currentSelectedTodoId)[0]?.due?.toString()
+      "
       :panel-desc="listOfTodos.filter((td) => td?.todoId == currentSelectedTodoId)[0]?.desc"
   /></Transition>
 
@@ -101,23 +109,25 @@ watch(todoCounter, () => {
         v-if="listOfTodos.length > 0"
         class="relative flex justify-center md:max-h-150 w-70 max-w-full overflow-x-auto md:overflow-x-hidden overflow-y-hidden md:overflow-y-auto scroll-smooth snap-x md:snap-y snap-mandatory rounded-2xl shadow-md bg-gradient-to-br from-lime-400 to-lime-500 dark:from-lime-700 dark:to-lime-800 p-3 mb-12"
       >
-        <div class="flex flex-row md:flex-col gap-3.5 w-max md:w-full">
-          <TransitionGroup name="todo-items-animation" tag="div">
-            <div
-              v-for="todo in listOfTodos"
-              :key="todo?.todoId"
-              class="flex-shrink-0 md:flex-shrink snap-start p-4 rounded-xl shadow-sm bg-white/70 dark:bg-black/30 backdrop-blur-md hover:scale-105 transition-transform duration-300 border-2 border-b-cyan-700 py-2 px-2"
-            >
-              <TodoItem
-                v-bind:todo-item="todo"
-                v-if="todo"
-                :key="todo.todoId"
-                class="bg-transparent cursor-pointer"
-                @delete-todo="(id: number) => delAtId(id)"
-                @click="syncTodoForPanelAndShowIt(todo.todoId)"
-              /></div
-          ></TransitionGroup>
-        </div></div
+        <TransitionGroup
+          name="todo-items-animation"
+          tag="div"
+          class="flex flex-row md:flex-col origin-center gap-4 w-max md:w-full"
+        >
+          <div
+            v-for="todo in listOfTodos"
+            :key="todo?.todoId"
+            class="flex-shrink-0 md:flex-shrink snap-start p-4 rounded-xl shadow-sm bg-white/70 dark:bg-black/30 backdrop-blur-md transform-gpu hover:scale-105 transition-transform duration-300 border-2 border-b-cyan-700 py-2 px-2"
+          >
+            <TodoItem
+              v-bind:todo-item="todo"
+              v-if="todo"
+              :key="todo.todoId"
+              class="bg-transparent cursor-pointer"
+              @delete-todo="(id: number) => delAtId(id)"
+              @click="syncTodoForPanelAndShowIt(todo.todoId)"
+            /></div
+        ></TransitionGroup></div
     ></Transition>
   </main>
   <div class="flex flex-row justify-between items-end pb-2 pt-5 md:pt-12">

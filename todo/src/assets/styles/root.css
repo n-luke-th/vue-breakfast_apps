@@ -30,7 +30,7 @@
 /* panel animation */
 .popup-panel-animation-enter-from,
 .popup-panel-animation-leave-to {
-  @apply transform translate-y-full duration-700 ease-linear opacity-0;
+  @apply transform translate-y-full duration-500 ease-linear opacity-0;
 }
 
 .popup-panel-animation-enter-active {
@@ -58,17 +58,17 @@
 /* items animation */
 
 .todo-items-animation-enter-active {
-  @apply transition-all duration-500 ease-in-out;
+  @apply animate-fade-in-scale;
 }
 .todo-items-animation-leave-active {
   @apply animate-fade-out-scale;
 }
 
 .todo-items-animation-enter-from {
-  @apply animate-fade-in-scale;
+  @apply absolute;
 }
 .todo-items-animation-leave-to {
-  @apply opacity-0 transform -translate-y-full; /* fade and slide up */
+  @apply opacity-0;
 }
 
 .todo-items-animation-leave-active {

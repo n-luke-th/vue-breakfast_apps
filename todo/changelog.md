@@ -5,6 +5,35 @@ The release history is adapting the [Keep a Changelog](https://keepachangelog.co
 ## [Unreleased]
 
 - Make all the actions on the todo item function (delete and open the details panel with further actions).
+- Incorrectly removing the todo item bug emerges and wait to be fixed.
+
+## Initial Development: [`0.1.9`] - 2025-9-21
+
+### Added
+
+- none
+
+### Changed
+
+- Adjusted the animations for adding/removing todo items.
+- Refined the layout of the content display on the popup panel.
+
+### Deprecated
+
+- none
+
+### Removed
+
+- none
+
+### Fixed
+
+- Fixed spacing stretching layout of each todo items.
+- Fixed overflow scrollable did not changed to horizontal when on a smaller screen (mobile).
+
+### Others
+
+- none
 
 ## Initial Development: [`0.1.8`] - 2025-9-20
 
