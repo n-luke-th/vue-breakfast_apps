@@ -5,6 +5,7 @@ import TodoCounter from './components/TodoCounter.vue';
 import {
   todoAsMapStr,
   TodoStatus,
+  todoStatusAsStr,
   type TodoCounter as CounterModel,
   type TodoModel,
 } from './models/todoModels';
@@ -49,30 +50,28 @@ function onNewTodoAdded(todo: TodoModel): void {
 }
 
 function delAtId(id: number) {
-  // const index = listOfTodos.value.findIndex((item) => {
-  //   item?.todoId == id;
-  // });
-  // console.log(index);
-  // if (index > -1) {
-  //   const isDone = listOfTodos.value[index]?.status == TodoStatus.done;
-  //   const deleted = listOfTodos.value.splice(index - 1, 1);
-  //   if (deleted.length == 1) {
-  //     console.log(`deleted: ${todoAsMapStr(deleted[0]!)}`);
-  //     todoCounter.totalTodo -= 1;
-  //   }
-  //   if (isDone && todoCounter.done > 0) {
-  //     todoCounter.done -= 1;
-  //   } else if (!isDone && todoCounter.inProgress > 0) {
-  //     todoCounter.inProgress -= 1;
-  //   }
-  // }
-  // const newList = listOfTodos.value.filter((td) => td?.todoId != id);
-  // listOfTodos.value = newList ?? [];
+  const td = listOfTodos.value.filter((td) => td?.todoId == id)[0];
+  const index = listOfTodos.value.indexOf(td);
+  console.log(`found deletion at index: ${index}`);
+  if (index > -1) {
+    const isDone = listOfTodos.value[index]?.status == TodoStatus.done;
+    const deleted = listOfTodos.value.splice(index, 1);
+    if (deleted.length == 1) {
+      console.log(`deleted: ${todoAsMapStr(deleted[0]!)}`);
+      todoCounter.totalTodo -= 1;
+
+      if (isDone && todoCounter.done > 0) {
+        todoCounter.done -= 1;
+      } else if (!isDone && todoCounter.inProgress > 0) {
+        todoCounter.inProgress -= 1;
+      }
+    }
+  }
 }
 
 function syncTodoForPanelAndShowIt(todoId: number) {
   currentSelectedTodoId.value = todoId;
-  console.log(`selected ${todoId}`);
+  console.log(`selected todo id: ${todoId}`);
 }
 
 watch(todoCounter, () => {
@@ -91,10 +90,26 @@ watch(todoCounter, () => {
       class="popup-panel"
       :panel-title="listOfTodos.filter((td) => td?.todoId == currentSelectedTodoId)[0]?.name"
       :panel-sub-title="
+        'DUE: ' +
         listOfTodos.filter((td) => td?.todoId == currentSelectedTodoId)[0]?.due?.toString()
       "
-      :panel-desc="listOfTodos.filter((td) => td?.todoId == currentSelectedTodoId)[0]?.desc"
-  /></Transition>
+      ><template #content1>
+        <p class="mt-2 mx-5 self-center">
+          STATUS:
+          {{
+            todoStatusAsStr(
+              listOfTodos.filter((td) => td?.todoId == currentSelectedTodoId)[0]?.status,
+            ).toUpperCase()
+          }}
+        </p>
+      </template>
+      <template #content2
+        ><p class="mt-2 mx-5 self-center">
+          {{ listOfTodos.filter((td) => td?.todoId == currentSelectedTodoId)[0]?.desc }}
+        </p>
+      </template>
+    </TodoPopPanel></Transition
+  >
 
   <main
     class="flex flex-col justify-center-safe items-center pt-15 md:px-5 md:flex-row md:gap-1 mb-12"

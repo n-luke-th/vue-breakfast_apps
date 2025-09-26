@@ -4,8 +4,33 @@ The release history is adapting the [Keep a Changelog](https://keepachangelog.co
 
 ## [Unreleased]
 
-- Make all the actions on the todo item function (delete and open the details panel with further actions).
-- Incorrectly removing the todo item bug emerges and wait to be fixed.
+- Able to toggle todo status.
+
+## Initial Development: [`0.1.10`] - 2025-9-26
+
+### Added
+
+- Customizable popup panel content to show content e.g. todo item details.
+
+### Changed
+
+- none
+
+### Deprecated
+
+- none
+
+### Removed
+
+- none
+
+### Fixed
+
+- Fixed incorrect todo item deletion.
+
+### Others
+
+- none
 
 ## Initial Development: [`0.1.9`] - 2025-9-21
 

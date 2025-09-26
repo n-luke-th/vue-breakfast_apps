@@ -10,7 +10,10 @@
       <h4 class="text-center">{{ panelSubTitle ?? '' }}</h4>
     </div>
 
-    <p class="mt-3 mx-5 self-center">{{ panelDesc ?? '' }}</p>
+    <slot name="content1"></slot>
+
+    <slot name="content2"></slot>
+
     <div class="flex flex-row justify-around justify-items-center mx-2 mt-3 mb-1">
       <button type="button" :class="getBtn1Class()" @click="onBtn1Click()">CLOSE</button>
       <button
@@ -29,7 +32,6 @@
 const props = defineProps<{
   panelTitle?: string;
   panelSubTitle?: string;
-  panelDesc?: string;
   btn1Class?: string;
   btn2Class?: string;
   onBtn1Click: VoidFunction;
@@ -40,6 +42,12 @@ function getBtn1Class(): string {
   return props.btn1Class == undefined
     ? 'rounded-md py-2 px-3 cursor-pointer bg-red-500 dark:bg-amber-800 hover:animate-pulse'
     : props.btn1Class;
+}
+
+function getBtn2Class(): string {
+  return props.btn2Class == undefined
+    ? 'rounded-md py-2 px-5 cursor-pointer hover:animate-pulse'
+    : props.btn2Class;
 }
 </script>
 
